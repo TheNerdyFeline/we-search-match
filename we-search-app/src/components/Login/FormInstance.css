@@ -1,0 +1,39 @@
+.jumbotron {
+	
+	background-color: white;
+	margin-top: 100px;
+	/*border-width: 5px;
+	border-color: white;
+	border-style: solid; */
+}
+
+.welcome {
+
+	color: #D35400;
+	letter-spacing: 1.5px;
+	margin-bottom: 50px;
+}
+
+.labels {
+	
+	/*color: #D35400;*/
+	letter-spacing: 1.5px;
+
+}
+
+
+.we-search {
+	color: #31708f;
+}
+
+.spacing {
+	margin-top: 10px;
+}
+.account {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	line-height: 1.42857143;
+	font-size: 14px;
+	letter-spacing: 1.2px;
+	margin-top: 25px;
+
+}

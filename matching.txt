@@ -1,0 +1,46 @@
+Matching Logic
+
+GPA
+  -let prof decide importance?
+       -very min+
+       -somewhat -.25+
+       -not really -1+ or -.5+?
+  - or simply min+?
+  - if meets min gets added to potentialArr
+
+Research Interest
+   - need to add validation, split by comma
+   - how many match?
+   - should it be a pre-made list they check off?
+   - only related to major/field?
+
+Live
+   - ask how far away to find match?
+   - how does willing to move play in?
+   - does this get answered by if switching university?
+
+Achieve
+   - is this the same as carreer aspiration?
+   - shoudl it be a pre-made list to match what prof wants for students?
+
+Hours
+   - should we ask the prof how many a hours a student needs to be available instead of how many they are? see if matches?
+
+University
+   - ask prof if student need to be currently enrolled or switching?
+   - instead of willing move?
+
+Year
+   - ask prof what min year student needs to be?
+   - add grad school, masters, phd levels
+
+Major
+   - ask prof if major needs to match their field
+     	 - yes adds more weight
+	 - maybe adds medium weight
+	 - no base weight
+Profile
+   - about section
+   - links
+     -linkedin
+     - website
