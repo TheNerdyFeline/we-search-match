@@ -5,6 +5,7 @@ var session = require("express-session");
 var passport = require("../we-search-db/config/passport");
 var isAuthenticated = require("../we-search-db/config/middleware/isAuthenticated");
 var userId, studProf, first_name, last_name;
+let match = require("./match.js");
 
 
 router.get('/api/test', function(req, res){
@@ -120,7 +121,6 @@ router.get("/api/user", isAuthenticated, function(req, res) {
     db.User.findOne({
 	where: {email: req.body.email} 
     }).then(function(user) {
-	console.log(user);
 	//userId = (newUser.dataValues.id).toString();
 	res.send(user);
 	//res.send('ok');
@@ -154,7 +154,6 @@ router.get("/api/professorform", isAuthenticated, function(req, res) {
 });
 
 router.put("/api/updateuser", isAuthenticated, function(req, res) {
-    console.log(req.body);
     db.User.update({
 	first_name: req.body.user.first_name,
 	last_name: req.body.user.last_name,
@@ -225,10 +224,16 @@ router.put("/api/updateprofessorform", function(req,res) {
     });
 });
 
-router.get("/api/allprofessors", function(req, res) {
+router.get("/api/getmatches", function(req, res) {
+    console.log("routes req", req.query);
     db.ProfForm.findAll({
-    }).then(function(allProfessors) {
-	res.send(allProfessors);
+	where: {
+	    available: "Yes"
+	}
+    }).then(function(professors) {
+	let user = req.query;
+	match.findMatches(user, professors);
+	res.send("ok");
     }).catch(function(err) {
 	console.log(err);
         res.json(err);
@@ -236,14 +241,5 @@ router.get("/api/allprofessors", function(req, res) {
     
 });
 
-router.get("/api/allstudents", function(req, res) {
-    db.StudentForm.findAll({
-    }).then(function(allStudents) {
-	res.send(allStudents);
-    }).catch(function(err) {
-	console.log(err);
-        res.json(err);
-    });
-});
 
 module.exports = router;

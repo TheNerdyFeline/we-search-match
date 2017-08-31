@@ -29,6 +29,7 @@ class StudentEditQuestions extends Component {
 
 	this.handleChange = this.handleChange.bind(this);
 	this.handleUpdate = this.handleUpdate.bind(this);
+	this.bestMatch = this.bestMatch.bind(this);
     }
 
     handleChange(property, e) {	
@@ -78,7 +79,17 @@ class StudentEditQuestions extends Component {
 	});
     }
 
-    
+    bestMatch() {
+    	axios.get('/api/getmatches', {
+	    params:
+	    {studentForm: this.state.studentForm}
+	}).then(response => {
+	    console.log(response);
+	}).catch(err => {
+	    console.log(err);
+	});
+    }
+
     render() {
 	const studentForm = this.state.studentForm;
 	
@@ -305,6 +316,7 @@ class StudentEditQuestions extends Component {
 		</tbody>
 	      </Table>
 	      <Button onClick={this.handleUpdate}>Update</Button>
+	      <Button onClick={this.bestMatch}>Find Best Matches</Button>
       	    </div>
       	);
     }

@@ -4,12 +4,6 @@ import axios from "axios";
 import Nav from '../Nav/NavbarComponent';
 import ProfessorEditQuestions from './EditQuestions/ProfessorEditQuestions';
 import StudentEditQuestions from './EditQuestions/StudentEditQuestions';
-import match from './match';
-
-
-const title1 = (
-    <h3>Best Matches</h3>
-);
 
 const title2 = (
     <h3>Edit Personal Info</h3>
@@ -30,14 +24,11 @@ class Dashboard extends Component {
 		email: this.props.location.email,
 		uuid: this.props.location.userId,
 		studProf: this.props.location.studProf
-	    },
-	    students: {},
-	    professors: {}
+	    }
 	};
 
 	this.handleChange = this.handleChange.bind(this);
 	this.handleUpdate = this.handleUpdate.bind(this);
-	this.bestMatch = this.bestMatch.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -64,24 +55,6 @@ class Dashboard extends Component {
 	});
     }
     
-    bestMatch() {
-    	axios.get('/api/allstudents', {
-	}).then(response => {
-	    console.log(response);
-	    this.setState({students: response.data});
-	    axios.get('/api/allprofessors', {  
-	}).then(response => {
-	    console.log(response);
-	    this.setState({professors: response.data});
-	    match.findMatch(this.state.students, this.state.professors).then( response => {
-	    console.log(response);
-	    }).bind(this);
-	}).catch(err => {
-	    console.log(err);
-	});
-	});
-    }
-    
     render() {
 	const studProf = this.state.user.studProf;
 	const user = this.state.user;
@@ -99,15 +72,7 @@ class Dashboard extends Component {
 		  </Col>
 		  <Col xs={1}></Col>
 		</Row>
-		<Row>
-		  <Col xs={1}></Col>
-		  <Col className='text-center' xs={10}>	    
-          	    <Panel header={title1} bsStyle="info">
-     		      <Button onClick={this.bestMatch}>Find Best Matches</Button>
-    		    </Panel>
-		  </Col>
-		  <Col xs={1}></Col>
-		</Row>
+		
 		<Row>
 		  <Col xs={1}></Col>
 		  <Col className='text-center' xs={10}>		    
